@@ -1,2 +1,2 @@
 # EG 7th github connection variables
-_
+print("what is your name")
