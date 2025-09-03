@@ -1,4 +1,7 @@
 # EG 7th github connection variables
 print("what is your name")
 name= "easton"
-age=15 
+age=15  
+
+
+print(name)
