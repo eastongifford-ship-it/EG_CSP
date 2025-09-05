@@ -28,17 +28,36 @@ age4=16
 average=(age1+age2+age3+age4)/4
 print("and the average age is :) " + str(average))
 # list all of the diffrent mathmatical operations
-num_one = 12
-num_two = 7
-print("addition(+) " + str(num_one + num_two))
-print("subtraction(-) " + str(num_one - num_two))
-print("multiplication(*) " + str(num_one * num_two))
-print("division:(/) " + str(num_one / num_two))
+num_one = int(input("Tell me a number:\n"))
+num_two = float(input("tell me another number:\n"))
+num_one +=num_two
+print("addition(+) " + str(num_one))
+num_one -=num_two
+print("subtraction(-) ", (num_one))
+num_one *=num_two
+print("multiplication(*) " + str(num_one))
+num_one /=num_two
+print("division:(/) ", round(num_one / num_two,2))
+num_one **=num_two
 print("exponents:(**) " + str(num_one ** num_two))
+num_one //=num_two
 print("integer division:(//) " + str(num_one // num_two))
+num_one %=num_two
 print("modulus:(%) " + str(num_one % num_two))
+
+
+
+
+
+
+
+
+
 # intiger in program are whole numbers
 # floats are numbers with the decimals
 # modulus is the left over or its the remainder 
+#ashinemet opperater is the = sigh
+# its logic with no numbers
+
 
 
