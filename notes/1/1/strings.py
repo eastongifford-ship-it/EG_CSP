@@ -18,3 +18,5 @@ print('welcome to my program', first_name, last_name +"!")
 
 #concatanate is joining two or more strings together
 #sanitization and stupid profing
+
+#debugging is fixing code
