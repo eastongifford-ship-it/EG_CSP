@@ -10,6 +10,8 @@
 #else:
     #print("then go do your homework!")
 #grade = 89.5
+# nessted condotions
+    # remeber not and and
 
 name = input(' What is your name :\n')
 if name == "ms Larose":
