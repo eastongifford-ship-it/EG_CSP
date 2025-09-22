@@ -21,6 +21,18 @@ for x in range (1,21):
 
     #corect while loop
 i = 1
-while 1 <= 20:
+while i <= 20:
     print(i)
     i+= 1
+
+
+x = 1
+
+while x < 21:
+    if x % 2==0:
+        print(f" {x} is a even number")
+    else:
+        print(x)
+    x+= 1
+import random
+
