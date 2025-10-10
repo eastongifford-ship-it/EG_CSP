@@ -6,7 +6,7 @@ int main() {
     float income, rent, utilities, groceries, transportation;
     float total_expenses, savings, leftover;
 
-    // Input section
+    
     printf("Enter your monthly income: $");
     scanf("%f", &income);
 
@@ -22,12 +22,12 @@ int main() {
     printf("Enter your monthly Transportation: $");
     scanf("%f", &transportation);
 
-    // Calculations
+    
     total_expenses = rent + utilities + groceries + transportation;
-    savings = income * 0.20; // 20% savings
+    savings = income * 0.20; 
     leftover = income - total_expenses - savings;
 
-    // Output summary
+    
     printf("\n--- Monthly Budget Summary ---\n");
     printf("Income: $%.2f\n", income);
     printf("Rent/Mortgage: $%.2f (%.2f%%)\n", rent, (rent / income) * 100);
