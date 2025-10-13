@@ -18,7 +18,7 @@ int main(void){
     }
 
     int num = 1;
-    while(num > 0){
+    while(num < 0){
         printf("%d\n", num);
         num++;
     }
