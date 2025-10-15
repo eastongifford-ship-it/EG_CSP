@@ -2,6 +2,22 @@
 
 #include <stdio.h>
 
+char time(void){
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 int main() {
     float income, rent, utilities, groceries, transportation;
     float total_expenses, savings, leftover;
