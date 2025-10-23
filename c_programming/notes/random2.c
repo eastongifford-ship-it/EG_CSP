@@ -3,29 +3,31 @@
 #include <string.h>
 #include <time.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 #define MAX_WORD_LENGTH 30
-#define MAX_GUESSES 7
+#define MAX_GUESSES 6
 
 // Hangman display based on lives left
 void display_hangman(int lives) {
     const char *stages[] = {
-        "_____\n|    |\n|    |\n|    o\n|   /|\\ \n|   / \\ \n|_______\n",
-        "_____\n|    |\n|    |\n|    o\n|   /|\\ \n|   /   \n|_______\n",
-        "_____\n|    |\n|    |\n|    o\n|   /|\\ \n|       \n|_______\n",
-        "_____\n|    |\n|    |\n|    o\n|   /|  \n|       \n|_______\n",
-        "_____\n|    |\n|    |\n|    o\n|   /   \n|       \n|_______\n",
-        "_____\n|    |\n|    |\n|    o\n|       \n|       \n|_______\n",
-        "_____\n|    |\n|    |\n|        \n|       \n|       \n|_______\n"
+        "_____\n|   |\n|    \n|    \n|    \n|_______\n",       // 6 lives
+        "_____\n|   |\n|   o\n|    \n|    \n|_______\n",       // 5 lives
+        "_____\n|   |\n|   o\n|   |\n|    \n|_______\n",       // 4 lives
+        "_____\n|   |\n|   o\n|  /|\n|    \n|_______\n",       // 3 lives
+        "_____\n|   |\n|   o\n|  /|\\\n|    \n|_______\n",     // 2 lives
+        "_____\n|   |\n|   o\n|  /|\\\n|  / \n|_______\n",     // 1 life
+        "_____\n|   |\n|   o\n|  /|\\\n|  / \\\n|_______\n"     // 0 lives
     };
     printf("%s\n", stages[MAX_GUESSES - lives]);
 }
 
-// Display current word progress
+
 void display_word(const char *word, const bool guessed_letters[26]) {
     for (int i = 0; i < strlen(word); i++) {
-        if (guessed_letters[word[i] - 'a']) {
-            printf("%c ", word[i]);
+        char ch = word[i];
+        if (ch >= 'a' && ch <= 'z' && guessed_letters[ch - 'a']) {
+            printf("%c ", ch);
         } else {
             printf("_ ");
         }
@@ -33,10 +35,11 @@ void display_word(const char *word, const bool guessed_letters[26]) {
     printf("\n");
 }
 
-// Check if all letters are guessed
+
 bool did_guess_all_letters(const char *word, const bool guessed_letters[26]) {
     for (int i = 0; i < strlen(word); i++) {
-        if (!guessed_letters[word[i] - 'a']) {
+        char ch = word[i];
+        if (ch >= 'a' && ch <= 'z' && !guessed_letters[ch - 'a']) {
             return false;
         }
     }
@@ -44,12 +47,13 @@ bool did_guess_all_letters(const char *word, const bool guessed_letters[26]) {
 }
 
 int main(void) {
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
 
     const char *words[] = {
-        "potato", "wagon", "cooperate", "seek", "sulphur", "center", "bounce", "ruin",
-        "interference", "autonomy", "examination", "roof", "market", "pop", "light",
-        "shock", "skin", "donor", "element", "execution", "vessel", "contrast"
+        "potato", "wagon", "cooperate", "seek", "sulphur", "center", "bounce",
+        "ruin", "interference", "autonomy", "examination", "roof", "market",
+        "pop", "light", "shock", "skin", "donor", "element", "execution",
+        "vessel", "contrast"
     };
     int word_count = sizeof(words) / sizeof(words[0]);
     const char *word = words[rand() % word_count];
@@ -61,14 +65,12 @@ int main(void) {
     printf("Welcome to Hangman!\n");
 
     while (lives > 0) {
-        display_hangman(lives);
-        printf("You have %d lives left.\n", lives);
+        printf("\nYou have %d lives left.\n", lives);
         display_word(word, guessed_letters);
-
         printf("Guess a letter: ");
         scanf(" %c", &guess);
+        guess = tolower(guess);
 
-        // Validate input
         if (guess < 'a' || guess > 'z') {
             printf("Invalid input. Please enter a lowercase letter.\n");
             continue;
@@ -88,20 +90,17 @@ int main(void) {
             lives--;
         }
 
+        display_hangman(lives);
+
         if (did_guess_all_letters(word, guessed_letters)) {
-            printf("Congratulations! You guessed the word '%s' with %d lives left!\n", word, lives);
+            printf("\nCongratulations! You guessed the word '%s' with %d lives left!\n", word, lives);
             break;
         }
     }
 
     if (lives == 0) {
-        display_hangman(lives);
         printf("You lost. The word was '%s'.\n", word);
     }
 
     return 0;
 }
-
-
-
-
